@@ -2,6 +2,7 @@ package
 {
 
 	import com.gskinner.motion.GTween;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -19,6 +20,9 @@ package
 		
 		private var container: Sprite;
 		private var anglePer:Number;
+		
+		public var clock_mc:MovieClip;
+		public var cover:MovieClip;
 		
 		public function CarouselManager() 
 		{
@@ -40,26 +44,31 @@ package
 		} 
 		
 		private function loadCards():void {
-			var octavioCards : Array = new Array(10);
-			anglePer = (Math.PI * 2) / octavioCards.length;
+			var workingCards : Array = new Array(8);
+			anglePer = (Math.PI * 2) / workingCards.length;
 			
-			for (var i : int = 0; i < 10; i++) {
-				octavioCards[i] = new octavioCard_mc;
-			}
+			workingCards[0] = new catalinaCard_mc;
+			workingCards[1] = new martaCard_mc;
+			workingCards[2] = new martinCard_mc;
+			workingCards[3] = new nicolasCard_mc;
+			workingCards[4] = new robertoCard_mc;
+			workingCards[5] = new tomasCard_mc;
+			workingCards[6] = new valentinaCard_mc;
+			workingCards[7] = new victoriaCard_mc;
 			
-			for (var i:int = 0; i < octavioCards.length; i++) {
-				octavioCards[i].buttonMode = true;				
-				octavioCards[i].addEventListener(MouseEvent.CLICK, onClick);
+			for (var i:int = 0; i < workingCards.length; i++) {
+				workingCards[i].buttonMode = true;				
+				workingCards[i].addEventListener(MouseEvent.CLICK, onClick);
 				
 
+		
 				
+				workingCards[i].angle = (i * anglePer) - Math.PI / 2;
+				workingCards[i].x = Math.cos(workingCards[i].angle ) * 450;
+				workingCards[i].z = Math.sin(workingCards[i].angle ) * 450;
+				workingCards[i].rotationY = 360/workingCards.length * -i;
 				
-				octavioCards[i].angle = (i * anglePer) - Math.PI / 2;
-				octavioCards[i].x = Math.cos(octavioCards[i].angle ) * 450;
-				octavioCards[i].z = Math.sin(octavioCards[i].angle ) * 450;
-				octavioCards[i].rotationY = 36 * -i;
-				
-				container.addChild(octavioCards[i]);
+				container.addChild(workingCards[i]);
 			}
 		}
 		
@@ -83,6 +92,7 @@ package
 			
 			this.addEventListener(Event.ENTER_FRAME, loop);
 			cover.addEventListener(MouseEvent.CLICK, stageClick);
+			
 		}
 		
 		private function stageClick(e:MouseEvent) {
