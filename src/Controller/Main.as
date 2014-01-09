@@ -7,7 +7,7 @@ package controller
 	import flash.net.URLRequest;
 	import view.StartScreen;
 	import controller.CarouselManager;
-	import flash.utils.*;
+	
 	/**
 	 * ...
 	 * @author Juanola
@@ -16,17 +16,14 @@ package controller
 	{
 		
 		private var startScreen : MovieClip;
-		private var carouselManager : CarouselManager;
+		private var carouselManager : CarouselManager;			
+		private var profileManager : ProfileManager;
 		
-		
-		private var profiles:Array;
-		private var profileXML : XML;
 		
 		public function Main() 
 		{			
 			createMainScreen();	
-			createProfiles();
-			
+			createProfiles();			
 		}
 		
 		private function createMainScreen() {
@@ -35,7 +32,7 @@ package controller
 		}
 		
 		private function createCarousel() {
-			carouselManager = new CarouselManager(profiles);
+			carouselManager = new CarouselManager(profileManager.profiles);
 		}
 		
 		private function createProfiles() {
@@ -45,15 +42,7 @@ package controller
 		}
 		
 		private function processProfilesXML(e:Event):void {
-			profileXML = new XML(e.target.data);
-			var totalProfiles : int = profileXML.profile.length(); 
-			profiles = new Array(totalProfiles);
-			for (var i: int = 0; i < totalProfiles; i++) {
-				var profile:Class = getDefinitionByName(profileXML.profile[i].movieClip) as Class;
-				var s:MovieClip = new profile();
-				s.stats.gotoAndStop(int(profileXML.profile[i].proactivity));
-				profiles[i] = s;
-			}
+			profileManager = new ProfileManager(new XML(e.target.data));			
 			createCarousel();
 		}
 		

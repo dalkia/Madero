@@ -6,11 +6,13 @@ package controller
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import utils.SimpleZSorter;
-	import utils.Math2;
+	import com.utils.SimpleZSorter;
+	import com.utils.Math2;
 	import fl.motion.easing.*;
 	import flash.utils.Timer;
 	import flash.events.TimerEvent;
+	import view.ProfileCard;
+	import view.ProfilePicture;
 	/**
 	 * ...
 	 * @author Juanola
@@ -36,7 +38,6 @@ package controller
 		
 		private function createTimer():void {
 			clock_mc.timer_txt.text = 60;
-			trace("hola");
 			var timer:Timer = new Timer(1000, 60);
 			timer.addEventListener(TimerEvent.TIMER, runTimer);
 			timer.start();			
@@ -47,29 +48,19 @@ package controller
 		} 
 		
 		private function loadCards():void {	
-			anglePer = (Math.PI * 2) / profiles.length;		
-			
-			for (var i:int = 0; i < profiles.length; i++) {
-				profiles[i].buttonMode = true;				
-				profiles[i].addEventListener(MouseEvent.CLICK, onClick);		
-				
-				profiles[i].angle = (i * anglePer) - Math.PI / 2;
-				profiles[i].x = Math.cos(profiles[i].angle ) * 450;
-				profiles[i].z = Math.sin(profiles[i].angle ) * 450;
-				profiles[i].rotationY = 360/profiles.length * -i;
-				
-				container.addChild(profiles[i]);
+			anglePer = (Math.PI * 2) / profiles.length;					
+			for (var i:int = 0; i < profiles.length; i++) {	
+				profiles[i].profileCard.carouselManager = this;
+				profiles[i].profileCard.container = container;
+				profiles[i].profileCard.angle = (i * anglePer) - Math.PI / 2;
+				profiles[i].profileCard.x = Math.cos(profiles[i].profileCard.angle ) * 450;
+				profiles[i].profileCard.z = Math.sin(profiles[i].profileCard.angle ) * 450;
+				profiles[i].profileCard.rotationY = 360/profiles.length * -i;				
+				container.addChild(profiles[i].profileCard);
 			}
 		}
 		
-		private function onClick(e:MouseEvent):void {
-			//For zooming in
-			//var tw:GTween = new GTween(container, 0.8, { rotationY:Math2.toDeg(e.currentTarget.angle + Math.PI / 2), z:100 },
-			//											{ease:Exponential.easeInOut } );
-			
-			var tw:GTween = new GTween(container, 0.8, { rotationY:Math2.toDeg(e.currentTarget.angle + Math.PI / 2)},
-														{ease:Exponential.easeInOut } );
-		}
+		
 		
 		
 		private function init():void
@@ -79,10 +70,9 @@ package controller
 			
 			container = new Sprite();
 			container.x = 800/2;
-			container.y = 600/2;
+			container.y = 275;
 			container.z = 400;
-			addChild(container);
-			
+			addChild(container);			
 			
 			this.addEventListener(Event.ENTER_FRAME, loop);
 			//carouselView.addEventListener(MouseEvent.CLICK, stageClick);
@@ -99,6 +89,12 @@ package controller
 		
 		private function loop(e:Event):void {
 			SimpleZSorter.sortClips(container);
+		}
+		
+		public function addProfileToTeam(profilePicture : ProfilePicture) :void {
+			profilePicture.x = 25.95;
+			profilePicture.y = 485.8;
+			addChild(profilePicture);
 		}
 		
 		
