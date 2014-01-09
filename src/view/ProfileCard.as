@@ -20,6 +20,7 @@ package view
 		private var _container : Sprite;
 		private var addToTeamIcon : MovieClip;
 		private var _carouselManager : CarouselManager;
+		
 				
 		
 		public function ProfileCard() 
