@@ -1,4 +1,4 @@
-package controller 
+﻿package controller 
 {
 	import model.Profile;
 	import view.ProfileCard;
@@ -23,7 +23,7 @@ package controller
 				var profileCard:Class = getDefinitionByName(profileXML.profile[i].movieClip) as Class;				
 				var proactivity : int = int(profileXML.profile[i].proactivity);
 				var s:ProfileCard = new profileCard();
-				var profile : Profile = new Profile(proactivity, s);
+				var profile : Profile = new Profile(proactivity, s, profileXML.profile[i].name);
 				_profiles[i] = profile;
 			}
 		}

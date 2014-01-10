@@ -1,6 +1,9 @@
-package view 
+﻿package view 
 {
+	
 	import controller.CarouselManager;
+	import controller.ProfileManager;
+	import model.Conflict;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -9,6 +12,8 @@ package view
 	import com.utils.Math2;
 	import fl.motion.easing.*;
 	import view.ProfilePicture;
+	import controller.TeamManager;
+	import model.Profile;
 	
 	/**
 	 * ...
@@ -19,8 +24,13 @@ package view
 		
 		private var _container : Sprite;
 		private var addToTeamIcon : MovieClip;
-		private var _carouselManager : CarouselManager;
 		
+		private var _carouselManager : CarouselManager;
+		private var _teamManager : TeamManager;
+		
+		private var _name : String;
+		
+		private var _profile : Profile;
 				
 		
 		public function ProfileCard() 
@@ -41,8 +51,14 @@ package view
 			stats.gotoAndStop(proactivity);
 		}
 		
-		public function addToTeam(e : Event) {			
-			_carouselManager.addProfileToTeam(profilePictureToClone);			
+		public function setProfileName(nameA : String){
+			_name = nameA;
+		}
+		
+		public function addToTeam(e : Event) {	
+			_carouselManager.addProfileToTeam(_name.substr(0,1));
+			_teamManager.addToTeam(_profile);
+						
 		}
 		
 		private function onClick(e:MouseEvent):void {
@@ -58,9 +74,19 @@ package view
 			_container = container;
 		}
 		
+	
 		public function set carouselManager(carouselManager:CarouselManager) {
 			_carouselManager = carouselManager;
 		}
+		
+		public function set teamManager(teamManager : TeamManager){
+			_teamManager = teamManager;
+		}
+		
+		public function set profile(profile : Profile){
+			_profile = profile;
+		}
+		
 		
 	}
 

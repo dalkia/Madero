@@ -1,4 +1,4 @@
-package model 
+﻿package model 
 {
 	/**
 	 * ...
@@ -7,9 +7,16 @@ package model
 	public class Conflict 
 	{
 		
-		public function Conflict() 
+		private var _description : String;
+		
+		
+		public function Conflict(description : String) 
 		{
-			
+			_description = description;
+		}
+		
+		public function get description():String{
+			return _description;
 		}
 		
 	}

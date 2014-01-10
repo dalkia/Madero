@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+<conflicts owner="Catalina">
+	<conflict id='1' autoActivated="true">
+		<text>Necesito un dia</text>
+		<day>1</day>
+		<penalty>
+			<proactivity>-1</proactivity>
+		</penalty>
+		<solutions>
+			<Solution>
+				<text>Tomatelo linda</text>
+				<incomeModifier>-10</incomeModifier>
+			</Solution>
+			<Solution>
+				<text>Tomatelo</text>
+				<incomeModifier>0</incomeModifier>
+			</Solution>
+			<Solution>
+				<text>No</text>
+				<incomeModifier>0</incomeModifier>
+				<nextConflict>2</nextConflict>
+			</Solution>
+		</solutions>
+	</conflict>	
+	<conflict id='2' autoActivated="false">
+		<text>No me diste un dia, cagon</text>
+		<day>+3</day>
+		<penalty>
+			<proactivity>-5</proactivity>
+		</penalty>
+		<solutions>
+			<Solution>
+				<text>Chau andate</text>
+				<incomeModifier>-10</incomeModifier>
+			</Solution>
+		</solutions>
+	</conflict>	
+</conflicts>
+<conflicts owner="Marta">
+	<conflict id='1' autoActivated="true">
+		<text>Soy Vieja</text>
+		<day>1</day>
+	</conflict>	
+</conflicts>
+<conflicts owner="Roberto">
+	<conflict id='1' autoActivated="true">
+		<text>Tengo un nombre de mierda</text>
+		<day>1</day>
+	</conflict>	
+</conflicts>
+<conflicts owner="Valentina">
+	<conflict id='1' autoActivated="true">
+		<text>Soy re puta</text>
+		<day>1</day>
+	
+	</conflict>	
+</conflicts>
+</data>

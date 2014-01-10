@@ -1,4 +1,4 @@
-package controller
+﻿package controller
 {
 
 	import com.gskinner.motion.GTween;
@@ -28,13 +28,30 @@ package controller
 		
 		private var profiles:Array;
 		
-		public function CarouselManager(profiles : Array) 
+		private var selectionDisplay : Array;
+		private var currentSelection : int;
+		
+		private var _main : Main;
+		
+		public function CarouselManager(profiles : Array, main : Main) 
 		{
 			init();
+			initSelectionArray();
 			this.profiles = profiles;
 			loadCards();
+			_main = main;
 			//createTimer();
 		}
+		
+		public function initSelectionArray(){
+			selectionDisplay = new Array(4);
+			selectionDisplay[0] = carouselView.firstSelection_txt;
+			selectionDisplay[1] = carouselView.secondSelection_txt;
+			selectionDisplay[2] = carouselView.thirdSelection_txt;
+			selectionDisplay[3] = carouselView.fourthSelection_txt;
+			currentSelection = 0;
+		}
+		
 		
 		private function createTimer():void {
 			clock_mc.timer_txt.text = 60;
@@ -66,6 +83,7 @@ package controller
 		private function init():void
 		{
 			carouselView = new CarouselView;
+			carouselView.startGame_mc.addEventListener(MouseEvent.CLICK, startGame);
 			addChild(carouselView);
 			
 			container = new Sprite();
@@ -79,6 +97,10 @@ package controller
 			
 		}
 		
+		public function startGame(e : MouseEvent):void{
+			_main.startSimulation();
+		}
+		
 		/*
 		For zooming out
 		private function stageClick(e:MouseEvent) {
@@ -87,14 +109,16 @@ package controller
 		}
 		*/
 		
+		
+		
+		
 		private function loop(e:Event):void {
 			SimpleZSorter.sortClips(container);
 		}
 		
-		public function addProfileToTeam(profilePicture : ProfilePicture) :void {
-			profilePicture.x = 25.95;
-			profilePicture.y = 485.8;
-			addChild(profilePicture);
+		public function addProfileToTeam(firstLetter : String) :void {
+			selectionDisplay[currentSelection].text = firstLetter;
+			currentSelection++;
 		}
 		
 		
