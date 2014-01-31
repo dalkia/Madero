@@ -27,6 +27,12 @@
 				}
 			}
 		}
+		
+		public function applyPenalties():void {
+			for(var i : int = 0; i < _team.teamArray.length;i++){				
+				_team.teamArray[i].applyPenalty();
+			}
+		}
 
 	}
 	

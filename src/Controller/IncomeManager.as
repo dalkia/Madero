@@ -14,11 +14,11 @@
 			_income = initialIncome;
 		}
 		
-		public function increaseIncome():void{
+		public function increaseIncome():int{
 			for each(var profile:Profile  in _team){
-				_income += profile.proactivity;
+				_income += profile.proactivity - profile.stress;
 			}
-			trace(_income);
+			return _income;
 		}
 		
 		public function set team(team : Array):void{

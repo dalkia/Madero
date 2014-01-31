@@ -8,19 +8,19 @@
 			<proactivity>-1</proactivity>
 		</penalty>
 		<solutions>
-			<Solution>
+			<solution>
 				<text>Tomatelo linda</text>
 				<incomeModifier>-10</incomeModifier>
-			</Solution>
-			<Solution>
+			</solution>
+			<solution>
 				<text>Tomatelo</text>
 				<incomeModifier>0</incomeModifier>
-			</Solution>
-			<Solution>
+			</solution>
+			<solution>
 				<text>No</text>
 				<incomeModifier>0</incomeModifier>
 				<nextConflict>2</nextConflict>
-			</Solution>
+			</solution>
 		</solutions>
 	</conflict>	
 	<conflict id='2' autoActivated="false">

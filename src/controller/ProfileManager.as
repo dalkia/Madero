@@ -22,8 +22,9 @@
 			for (var i: int = 0; i < totalProfiles; i++) {				
 				var profileCard:Class = getDefinitionByName(profileXML.profile[i].movieClip) as Class;				
 				var proactivity : int = int(profileXML.profile[i].proactivity);
+				var stress : int = int(profileXML.profile[i].stress);
 				var s:ProfileCard = new profileCard();
-				var profile : Profile = new Profile(proactivity, s, profileXML.profile[i].name);
+				var profile : Profile = new Profile(proactivity,stress ,s, profileXML.profile[i].name);
 				_profiles[i] = profile;
 			}
 		}

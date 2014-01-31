@@ -3,49 +3,49 @@
 <profile>
 	<name>Catalina</name>
 	<proactivity>2</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>catalinaCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Marta</name>
 	<proactivity>1</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>martaCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Martin</name>
 	<proactivity>0</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>martinCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Nicolas</name>
 	<proactivity>3</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>nicolasCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Roberto</name>
 	<proactivity>2</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>robertoCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Tomas</name>
 	<proactivity>0</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>tomasCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Valentina</name>
 	<proactivity>2</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>valentinaCard_mc</movieClip>
 </profile>
 <profile>
 	<name>Victoria</name>
 	<proactivity>1</proactivity>
-	<stress>3</stress>
+	<stress>1</stress>
 	<movieClip>victoriaCard_mc</movieClip>
 </profile>
 </data>

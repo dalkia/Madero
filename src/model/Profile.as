@@ -3,6 +3,7 @@
 	import flash.display.MovieClip;
 	import view.ProfileCard;
 	import model.Conflict;
+	import model.Penalty;
 	/**
 	 * ...
 	 * @author Juanola
@@ -11,14 +12,15 @@
 	{
 		
 		private var _proactivity : int;
-		private var stress : int;
+		private var _stress : int;
 		private var _profileCard: ProfileCard;
 		private var _profileName : String;
 		private var _currentConflicts : Array;
 		
-		public function Profile(proactiviy :int,profileCard : ProfileCard, nameA : String) 
+		public function Profile(proactiviy :int,stress : int,profileCard : ProfileCard, nameA : String) 
 		{
-			_proactivity = proactiviy;			
+			_proactivity = proactiviy;
+			_stress = stress;
 			_profileCard = profileCard;
 			_profileName = nameA;
 			_profileCard.setProactivity(_proactivity);
@@ -35,12 +37,23 @@
 			return _proactivity;
 		}
 		
+		public function get stress() : int {
+			return _stress;
+		}
+		
 		public function get profileName():String{
 			return _profileName;
 		}
 		
 		public function addConflict(conflict : Conflict):void{
 			_currentConflicts.push(conflict);
+		}
+		
+		public function applyPenalty():void {
+			for each(var conflict : Conflict in _currentConflicts) {
+				_proactivity += conflict.penalty.proactivityPenalty;
+				_stress += conflict.penalty.stressPenalty;
+			}
 		}
 		
 		public function get currentConflicts():Array{
