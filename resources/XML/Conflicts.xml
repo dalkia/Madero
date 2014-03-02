@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <data>
 <conflicts owner="Catalina">
 	<conflict id='1' autoActivated="true">
@@ -25,15 +25,15 @@
 	</conflict>	
 	<conflict id='2' autoActivated="false">
 		<text>No me diste un dia, cagon</text>
-		<day>+3</day>
+		<day>3</day>
 		<penalty>
 			<proactivity>-5</proactivity>
 		</penalty>
 		<solutions>
-			<Solution>
+			<solution>
 				<text>Chau andate</text>
 				<incomeModifier>-10</incomeModifier>
-			</Solution>
+			</solution>
 		</solutions>
 	</conflict>	
 </conflicts>
@@ -51,8 +51,8 @@
 </conflicts>
 <conflicts owner="Valentina">
 	<conflict id='1' autoActivated="true">
-		<text>Soy re puta</text>
-		<day>1</day>
+		<text>Tengo pulgas</text>
+		<day>4</day>
 	</conflict>	
 </conflicts>
 </data>

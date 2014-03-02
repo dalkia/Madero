@@ -1,4 +1,4 @@
-package model 
+﻿package model 
 {
 	/**
 	 * ...
@@ -9,11 +9,13 @@ package model
 		
 		private var _solutionDescription : String;
 		private var _incomeModifier : int;
+		private var _nextConflict : int;
 		
-		public function Solution(solution : String, incomeModifier : int) 
+		public function Solution(solution : String, incomeModifier : int, nextConflict : int) 
 		{
 			_solutionDescription = solution;
 			_incomeModifier = incomeModifier;
+			_nextConflict = nextConflict;
 		}
 		
 		
@@ -23,6 +25,10 @@ package model
 		
 		public function get incomeModifier() : int {
 			return _incomeModifier;
+		}
+		
+		public function get nextConflict() : int{
+			return _nextConflict;
 		}
 	}
 

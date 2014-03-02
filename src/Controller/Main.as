@@ -34,7 +34,8 @@
 			createMainScreen();	
 			createProfiles();	
 			createTimeManager();
-			createMainSimulationScreen();			
+			createMainSimulationScreen();	
+			
 		}
 		
 		private function createTimeManager():void{
@@ -90,8 +91,7 @@
 		public function dayEnded():void {					
 			teamManager.applyPenalties();
 			trace("Termino el dia");
-			var newConflicts : Array = conflictManager.prepareConflictsForDay(timeManager.currentDay);			
-			
+			var newConflicts : Array = conflictManager.prepareConflictsForDay(timeManager.currentDay);		
 			for (var j : int = 0; j < teamManager.team.teamArray.length; j++) {
 				var currentTeamMember = teamManager.team.teamArray[j];
 				var currentConflicts = newConflicts[j];
@@ -126,18 +126,25 @@
 		}
 		
 		private function createConflicts():void{
-			var conflictXMLLoader:URLLoader = new URLLoader();
-			conflictXMLLoader.load(new URLRequest("../resources/xml/Conflicts.xml"));
-			conflictXMLLoader.addEventListener(Event.COMPLETE, processConflictsXML);	
+			var personalConflictXMLLoader:URLLoader = new URLLoader();
+			personalConflictXMLLoader.load(new URLRequest("../resources/xml/Conflicts.xml"));
+			personalConflictXMLLoader.addEventListener(Event.COMPLETE, processConflictsXML);	
+			
+			var interPersonalConflictsXMLLoader:URLLoader = new URLLoader();
+			interPersonalConflictsXMLLoader.load(new URLRequest("../resources/xml/InterConflicts.xml"));
+			interPersonalConflictsXMLLoader.addEventListener(Event.COMPLETE, processInterConflictsXML);	
 		}
 		
-		private function processConflictsXML(e:Event):void {			
-			conflictManager = new ConflictManager(teamManager);			
-			conflictManager.createConflicts(new XML(e.target.data),teamManager.team.teamArray);
-			
+		private function processConflictsXML(e:Event):void {
+			conflictManager = new ConflictManager(teamManager, timeManager);	
+			conflictManager.createPersonalConflicts(new XML(e.target.data),teamManager.team.teamArray);
 			incomeManager.team = teamManager.team.teamArray;
+			//El Time manager esta mal aca, tenes que hacer una carga de algun tipo, asi es un pito
 			timeManager.startTimers();
-			
+		}
+		
+		private function processInterConflictsXML(e: Event):void{
+			conflictManager.createInterPersonalConflicts(new XML(e.target.data),teamManager.team.teamArray);
 		}
 		
 		

@@ -1,4 +1,4 @@
-package view 
+﻿package view 
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;	
@@ -6,6 +6,7 @@ package view
 	import fl.containers.ScrollPane;
 	import model.Conflict;
 	import model.Solution;
+	import view.EMailView;
 	
 	/**
 	 * ...
@@ -43,7 +44,7 @@ package view
 		}
 		
 		public function addEmail(sender : String, content : String, conflict : Conflict) {
-			var email : MovieClip = new mailTemplate_mc;
+			var email : MovieClip = new mailTemplate_mc();
 			email.addEventListener(MouseEvent.CLICK, displaySolutions);
 			email.mailText_mc.text = "from: " + sender + " subject: " + content;
 			email.userData = conflict;
@@ -59,7 +60,7 @@ package view
 			var solutionDisplay : MovieClip = new MovieClip;
 			var asco : int = 0;
 			for each(var solution : Solution in e.target.userData) {
-				var email : MovieClip = new mailTemplate_mc;
+				var email : MovieClip = new EMailView;
 				email.addEventListener(MouseEvent.CLICK, closeSolutions);
 				email.mailText_mc.text = solution.solutionDescription;
 				email.y = asco * email.height;
