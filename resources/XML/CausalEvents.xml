@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+<events>
+	<event>
+		<text>Sale un dia de campo</text>
+		<modifier>
+			<proactivity>3</proactivity>
+			<stress>-2</stress>
+		</modifier>
+		<cost>10</cost>
+	</event>		
+</events>
+</data>
