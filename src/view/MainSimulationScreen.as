@@ -6,7 +6,7 @@
 	import fl.containers.ScrollPane;
 	import model.Conflict;
 	import model.Solution;
-	import view.EMailView;
+	//import view.EMailView;
 	
 	/**
 	 * ...
@@ -17,6 +17,7 @@
 		
 		public var mailList : Array;
 		public var mailDisplay : MovieClip;
+		public var computerView : ComputerView;
 		
 		
 		public function MainSimulationScreen() 
@@ -24,9 +25,7 @@
 			mailDisplay = new MovieClip();
 			mailList = new Array();
 			//bigComputer_mc.mailScrollPane_sp.scrollDrag = true;
-			removeChild(bigComputer_mc);			
-			bigComputer_mc.closeBigComputer_mc.addEventListener(MouseEvent.CLICK, closeBigComputer);
-			bigComputer_mc.mailScrollPane_sp.source = mailDisplay;
+			computerView = new ComputerView(this);			
 			littleComputer_mc.addEventListener(MouseEvent.CLICK, openBigComputer);			
 		}
 		
@@ -35,15 +34,16 @@
 		}
 		
 		public function openBigComputer(e : Event) : void {			
-			addChild(bigComputer_mc);
-			bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
+			addChild(computerView);
+			//bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
 		}
 		
-		public function closeBigComputer(e : Event) : void {
-			removeChild(bigComputer_mc);
+		public function removeBigComputer() : void {
+			removeChild(computerView);
 		}
 		
 		public function addEmail(sender : String, content : String, conflict : Conflict) {
+			/*
 			var email : MovieClip = new mailTemplate_mc();
 			email.addEventListener(MouseEvent.CLICK, displaySolutions);
 			email.mailText_mc.text = "from: " + sender + " subject: " + content;
@@ -52,28 +52,33 @@
 			mailDisplay.addChild(email);
 			mailList.push(email);	
 			bigComputer_mc.mailScrollPane_sp.update();
+			*/
 		}
 		
 		public function displaySolutions(e : Event) {
+			/*
 			bigComputer_mc.removeChild(bigComputer_mc.mailScrollPane_sp);
 			bigComputer_mc.addChild(bigComputer_mc.solutionsScrollPane_sp);			
 			var solutionDisplay : MovieClip = new MovieClip;
 			var asco : int = 0;
 			for each(var solution : Solution in e.target.userData) {
+				/*
 				var email : MovieClip = new EMailView;
 				email.addEventListener(MouseEvent.CLICK, closeSolutions);
 				email.mailText_mc.text = solution.solutionDescription;
 				email.y = asco * email.height;
 				asco++;
 				solutionDisplay.addChild(email);
+				
 			}
 			bigComputer_mc.solutionsScrollPane_sp.source = solutionDisplay;
 			bigComputer_mc.solutionsScrollPane_sp.update();
+			*/
 		}
 		
 		public function closeSolutions(e : Event):void {
-			bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
-			bigComputer_mc.addChild(bigComputer_mc.mailScrollPane_sp);		
+		//	bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
+		//	bigComputer_mc.addChild(bigComputer_mc.mailScrollPane_sp);		
 		}
 		
 	}

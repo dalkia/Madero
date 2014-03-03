@@ -130,9 +130,11 @@
 			personalConflictXMLLoader.load(new URLRequest("../resources/xml/Conflicts.xml"));
 			personalConflictXMLLoader.addEventListener(Event.COMPLETE, processConflictsXML);	
 			
+			/*
 			var interPersonalConflictsXMLLoader:URLLoader = new URLLoader();
 			interPersonalConflictsXMLLoader.load(new URLRequest("../resources/xml/InterConflicts.xml"));
-			interPersonalConflictsXMLLoader.addEventListener(Event.COMPLETE, processInterConflictsXML);	
+			interPersonalConflictsXMLLoader.addEventListener(Event.COMPLETE, processInterConflictsXML);
+			*/
 		}
 		
 		private function processConflictsXML(e:Event):void {
