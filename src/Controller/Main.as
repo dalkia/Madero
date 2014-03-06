@@ -27,6 +27,7 @@
 		private var incomeManager : IncomeManager;
 		private var conflictManager : ConflictManager;
 		private var mainSimulationScreen : MovieClip;
+		private var currentDay : int;
 		
 		
 		public function Main() 
@@ -90,13 +91,14 @@
 		
 		public function dayEnded():void {					
 			teamManager.applyPenalties();
-			trace("Termino el dia");
+			currentDay++;
+			mainSimulationScreen.day_txt.text = "Day " + currentDay;;
 			var newConflicts : Array = conflictManager.prepareConflictsForDay(timeManager.currentDay);		
 			for (var j : int = 0; j < teamManager.team.teamArray.length; j++) {
 				var currentTeamMember = teamManager.team.teamArray[j];
 				var currentConflicts = newConflicts[j];
 				for (var i : int = 0; i < currentConflicts.length; i++) {
-					mainSimulationScreen.addEmail(currentTeamMember.profileName, currentConflicts[i].description, currentConflicts[i]);
+					mainSimulationScreen.addEmail(currentTeamMember.profileName, currentConflicts[i].title, currentConflicts[i].description,currentConflicts[i]);
 				}
 			}
 		
@@ -119,9 +121,11 @@
 			mainSimulationScreen.setTotalMoneyText(actualIncome);
 		}
 		
-		public function startSimulation(){
+		public function startSimulation() {
+			currentDay = 1;
 			removeChild(carouselManager);
 			addChild(mainSimulationScreen);
+			mainSimulationScreen.day_txt.text = "Day " + currentDay;
 			createConflicts();
 		}
 		
@@ -130,11 +134,11 @@
 			personalConflictXMLLoader.load(new URLRequest("../resources/xml/Conflicts.xml"));
 			personalConflictXMLLoader.addEventListener(Event.COMPLETE, processConflictsXML);	
 			
-			/*
+			
 			var interPersonalConflictsXMLLoader:URLLoader = new URLLoader();
 			interPersonalConflictsXMLLoader.load(new URLRequest("../resources/xml/InterConflicts.xml"));
 			interPersonalConflictsXMLLoader.addEventListener(Event.COMPLETE, processInterConflictsXML);
-			*/
+			
 		}
 		
 		private function processConflictsXML(e:Event):void {

@@ -15,16 +15,11 @@
 	public class MainSimulationScreen extends MovieClip 
 	{
 		
-		public var mailList : Array;
-		public var mailDisplay : MovieClip;
 		public var computerView : ComputerView;
 		
 		
 		public function MainSimulationScreen() 
-		{
-			mailDisplay = new MovieClip();
-			mailList = new Array();
-			//bigComputer_mc.mailScrollPane_sp.scrollDrag = true;
+		{			
 			computerView = new ComputerView(this);			
 			littleComputer_mc.addEventListener(MouseEvent.CLICK, openBigComputer);			
 		}
@@ -33,7 +28,8 @@
 			totalMoney_txt.text = "$ " + totalMoney.toString();
 		}
 		
-		public function openBigComputer(e : Event) : void {			
+		public function openBigComputer(e : Event) : void {		
+			computerView.goToSelectionScreen();
 			addChild(computerView);
 			//bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
 		}
@@ -42,39 +38,15 @@
 			removeChild(computerView);
 		}
 		
-		public function addEmail(sender : String, content : String, conflict : Conflict) {
-			/*
-			var email : MovieClip = new mailTemplate_mc();
-			email.addEventListener(MouseEvent.CLICK, displaySolutions);
-			email.mailText_mc.text = "from: " + sender + " subject: " + content;
+		public function addEmail(sender : String, title : String, description : String,conflict : Conflict) {			
+			var email : MovieClip = new mailTemplate_mc();			
+			email.mailText_mc.text = "from: " + sender + " subject: " + title;
+			conflict.owner = sender;
 			email.userData = conflict;
-			email.y = mailList.length * email.height;
-			mailDisplay.addChild(email);
-			mailList.push(email);	
-			bigComputer_mc.mailScrollPane_sp.update();
-			*/
+			computerView.addEmail(email);			
 		}
 		
-		public function displaySolutions(e : Event) {
-			/*
-			bigComputer_mc.removeChild(bigComputer_mc.mailScrollPane_sp);
-			bigComputer_mc.addChild(bigComputer_mc.solutionsScrollPane_sp);			
-			var solutionDisplay : MovieClip = new MovieClip;
-			var asco : int = 0;
-			for each(var solution : Solution in e.target.userData) {
-				/*
-				var email : MovieClip = new EMailView;
-				email.addEventListener(MouseEvent.CLICK, closeSolutions);
-				email.mailText_mc.text = solution.solutionDescription;
-				email.y = asco * email.height;
-				asco++;
-				solutionDisplay.addChild(email);
-				
-			}
-			bigComputer_mc.solutionsScrollPane_sp.source = solutionDisplay;
-			bigComputer_mc.solutionsScrollPane_sp.update();
-			*/
-		}
+		
 		
 		public function closeSolutions(e : Event):void {
 		//	bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);

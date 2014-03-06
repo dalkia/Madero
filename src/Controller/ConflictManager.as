@@ -47,7 +47,7 @@
 						var solution : Solution = new Solution(currentConflict.solutions[j].text, currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
 						solutions.push(solution);
 					}
-					var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.text, penalty, solutions);
+					var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.title, currentConflict.description,penalty, solutions);
 					if (currentConflict.@autoActivated == "true") {						
 						conflictsForDay[currentConflict.day][currentPerson].push(conflict);
 					}else{
@@ -92,10 +92,10 @@
 						var penalty : Penalty = new Penalty(currentPenalty.proactivity, currentPenalty.stress);						
 						var solutions : Array = new Array;
 						for (var j : int = 0; j < currentConflict.solutions.length; j++) {
-							var solution : Solution = new Solution(currentConflict.solutions[j].text, currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
+							var solution : Solution = new Solution(currentConflict.solutions[j].title, currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
 							solutions.push(solution);
 						}
-						var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.text, penalty, solutions);
+						var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.title, currentConflict.description, penalty, solutions);
 						if (currentConflict.@autoActivated == "true") {						
 							conflictsForDay[currentConflict.day][currentPerson].push(conflict);
 						}else{

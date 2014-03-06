@@ -2,36 +2,38 @@
 <data>
 <conflicts owner="Catalina">
 	<conflict id='1' autoActivated="true">
-		<text>Necesito un dia</text>
+		<title>Necesito un dia</title>
+		<description>Necesito un dia para ocuparme de mi hijo</description>
 		<day>1</day>
 		<penalty>
 			<proactivity>-1</proactivity>
 		</penalty>
 		<solutions>
 			<solution>
-				<text>Tomatelo linda</text>
+				<title>Tomatelo linda</title>
 				<incomeModifier>-10</incomeModifier>
 			</solution>
 			<solution>
-				<text>Tomatelo</text>
+				<title>Tomatelo</title>
 				<incomeModifier>0</incomeModifier>
 			</solution>
 			<solution>
-				<text>No</text>
+				<title>No</title>
 				<incomeModifier>0</incomeModifier>
 				<nextConflict>2</nextConflict>
 			</solution>
 		</solutions>
 	</conflict>	
 	<conflict id='2' autoActivated="false">
-		<text>No me diste un dia, cagon</text>
+		<title>No me diste un dia, cagon</title>
+		<description>Necesito un dia para ocuparme de mi hijo</description>
 		<day>3</day>
 		<penalty>
 			<proactivity>-5</proactivity>
 		</penalty>
 		<solutions>
 			<solution>
-				<text>Chau andate</text>
+				<title>Chau andate</title>
 				<incomeModifier>-10</incomeModifier>
 			</solution>
 		</solutions>
@@ -39,19 +41,19 @@
 </conflicts>
 <conflicts owner="Marta">
 	<conflict id='1' autoActivated="true">
-		<text>Soy Vieja</text>
+		<title>Soy Vieja</title>
 		<day>1</day>
 	</conflict>	
 </conflicts>
 <conflicts owner="Roberto">
 	<conflict id='1' autoActivated="true">
-		<text>Tengo un nombre de mierda</text>
+		<title>Tengo un nombre de mierda</title>
 		<day>1</day>
 	</conflict>	
 </conflicts>
 <conflicts owner="Valentina">
 	<conflict id='1' autoActivated="true">
-		<text>Tengo pulgas</text>
+		<title>Tengo pulgas</title>
 		<day>4</day>
 	</conflict>	
 </conflicts>
