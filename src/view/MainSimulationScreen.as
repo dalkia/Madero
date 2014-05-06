@@ -1,10 +1,13 @@
 ﻿package view 
 {
+
+	import controller.Main;
 	import flash.display.MovieClip;
 	import flash.events.Event;	
 	import flash.events.MouseEvent;
 	import fl.containers.ScrollPane;
 	import model.Conflict;
+	import model.NonCausalEpisode;
 	import model.Solution;
 	//import view.EMailView;
 	
@@ -16,10 +19,12 @@
 	{
 		
 		public var computerView : ComputerView;
+		private var _main : Main;
 		
 		
-		public function MainSimulationScreen() 
+		public function MainSimulationScreen(main : Main) 
 		{			
+			_main = main;
 			computerView = new ComputerView(this);			
 			littleComputer_mc.addEventListener(MouseEvent.CLICK, openBigComputer);			
 		}
@@ -46,12 +51,32 @@
 			computerView.addEmail(email);			
 		}
 		
+		public function addNonCausalEpisode(nonCausalEpisode : NonCausalEpisode):void {
+			computerView.addNonCausalEpisode(nonCausalEpisode);
+		}
+		
 		
 		
 		public function closeSolutions(e : Event):void {
 		//	bigComputer_mc.removeChild(bigComputer_mc.solutionsScrollPane_sp);
 		//	bigComputer_mc.addChild(bigComputer_mc.mailScrollPane_sp);		
 		}
+		
+		public function removeEmergencies():void {
+			computerView.removeEmergencies();
+		}
+		
+		public function applyPenalty(incomeModifier:int):void 
+		{
+			_main.applyPenalty(incomeModifier);
+		}
+		
+		public function removeEmail(currentConflict:Conflict):void 
+		{
+			computerView.removeEmail(currentConflict);
+		}
+		
+		
 		
 	}
 

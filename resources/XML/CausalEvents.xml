@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<data>
 <events>
 	<event>
 		<text>Sale un dia de campo</text>
@@ -10,4 +9,3 @@
 		<cost>10</cost>
 	</event>		
 </events>
-</data>

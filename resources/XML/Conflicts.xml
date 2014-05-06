@@ -10,15 +10,18 @@
 		</penalty>
 		<solutions>
 			<solution>
-				<title>Tomatelo linda</title>
+				<title>Tomatelo</title>
+				<description>Tomatelo hermosa</description>
 				<incomeModifier>-10</incomeModifier>
 			</solution>
 			<solution>
 				<title>Tomatelo</title>
+				<description>Esta todo bien</description>
 				<incomeModifier>0</incomeModifier>
 			</solution>
 			<solution>
 				<title>No</title>
+				<description>Te necesitamos en la empresa</description>
 				<incomeModifier>0</incomeModifier>
 				<nextConflict>2</nextConflict>
 			</solution>

@@ -43,8 +43,8 @@
 					var currentPenalty = currentConflict.penalty;						
 					var penalty : Penalty = new Penalty(currentPenalty.proactivity, currentPenalty.stress);						
 					var solutions : Array = new Array;
-					for (var j : int = 0; j < currentConflict.solutions.length; j++) {
-						var solution : Solution = new Solution(currentConflict.solutions[j].text, currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
+					for (var j : int = 0; j < currentConflict.solutions.solution.length(); j++) {
+						var solution : Solution = new Solution(currentConflict.solutions.solution[j].title,currentConflict.solutions.solution[j].description,currentConflict.solutions.solution[j].incomeModifier,currentConflict.solutions.solution[j].nextConflict); 
 						solutions.push(solution);
 					}
 					var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.title, currentConflict.description,penalty, solutions);
@@ -92,7 +92,7 @@
 						var penalty : Penalty = new Penalty(currentPenalty.proactivity, currentPenalty.stress);						
 						var solutions : Array = new Array;
 						for (var j : int = 0; j < currentConflict.solutions.length; j++) {
-							var solution : Solution = new Solution(currentConflict.solutions[j].title, currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
+							var solution : Solution = new Solution(currentConflict.solutions[j].title, currentConflict.solutions[j].description,currentConflict.solutions[j].incomeModifier, currentConflict.solutions[j].nextConflict); 
 							solutions.push(solution);
 						}
 						var conflict : Conflict = new Conflict(currentConflict.@id, currentConflict.title, currentConflict.description, penalty, solutions);

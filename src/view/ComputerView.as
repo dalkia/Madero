@@ -5,6 +5,7 @@
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import model.Conflict;
+	import model.NonCausalEpisode;
 	import view.MainSimulationScreen;
 	
 	/**
@@ -23,6 +24,7 @@
 		private var adminScreen : AdminScreen;
 		private var closeBigComputer : CloseBigComputer;
 		private var currentScreen : ComputerScreen;
+		private var currentNonCausalEpisodes : Array;
 		
 		public function ComputerView(mainSimulationScreen : MainSimulationScreen) 
 		{
@@ -34,10 +36,10 @@
 			closeBigComputer = new CloseBigComputer();
 			closeBigComputer.x = 696.1;
 			closeBigComputer.y = 24.55;			
-			mailScreen = new MailScreen();
+			mailScreen = new MailScreen(mainSimulationScreen);
 			selectionScreen = new SelectionScreen();
-			emergencyScreen = new EmergencyScreen();
 			adminScreen = new AdminScreen();
+			currentNonCausalEpisodes = new Array();
 			addChild(selectionScreen);
 			addChildAt(closeBigComputer, 2);
 			setMainScreenListeners();
@@ -69,10 +71,12 @@
 			currentScreen = mailScreen;
 		}
 		
-		public function openEmergencyView(e : Event):void{
+		public function openEmergencyView(e : Event):void{			
 			removeChildAt(1);
-			addChildAt(emergencyScreen, 1);
-			currentScreen = emergencyScreen;
+			showNonCausalEpisodes();
+			
+			
+			currentScreen = emergencyScreen;			
 		}
 		
 		public function openAdminView(e : Event):void{
@@ -106,6 +110,32 @@
 		
 		public function updateView() : void {
 			currentScreen.refreshScreen();
+		}
+		
+		public function addNonCausalEpisode(nonCausalEpisode:NonCausalEpisode):void 
+		{			
+			currentNonCausalEpisodes.push(nonCausalEpisode);
+		}
+		
+		private function showNonCausalEpisodes():void {
+			if (currentNonCausalEpisodes.length != 0) {
+				var nonCausalEpisodeView : EmergencyScreen = new EmergencyScreen(currentNonCausalEpisodes[0]);
+				removeChildAt(1);
+				addChildAt(nonCausalEpisodeView, 1);				
+			}else {
+				var noEmergency : NoEmergency = new NoEmergency();
+				addChildAt(noEmergency, 1);
+			}
+			
+		}
+		
+		public function removeEmergencies():void {
+			currentNonCausalEpisodes.pop();
+		}
+		
+		public function removeEmail(currentConflict:Conflict):void 
+		{
+			mailList.splice(mailList.indexOf(currentConflict),1); 
 		}
 		
 	}

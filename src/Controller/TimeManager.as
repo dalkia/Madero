@@ -43,9 +43,15 @@
 			incomeGenerated(null);
 		}
 		
+		public function endTimers():void {
+			dayTimer.stop();
+			incomeTimer.stop();
+		}
+		
 		public function get currentDay():int{
 			return _currentDay;
 		}
+		
 		
 		
 

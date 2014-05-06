@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<events>
+	<event>
+		<title>Huelga</title>
+		<description>Hubo una Huelga</description>
+		<day>2</day>
+		<penalty>-50</penalty>
+	</event>
+	<event>
+		<title>Segunda Huelga</title>
+		<description>Hubo una Huelga</description>
+		<day>5</day>
+		<penalty>-50</penalty>
+	</event>
+</events>
+

@@ -9,7 +9,7 @@
 		
 		private var _title : String;
 		private var _description : String;		
-		private var _possibleSolutions : Array;
+		private var _solutions : Array;
 		private var _penalty : Penalty;
 		private var _id : int;
 		private var _owner : String;
@@ -21,7 +21,7 @@
 			_title = title;
 			_description = description;
 			_penalty = penalty;
-			_possibleSolutions = possibleSolutions;
+			_solutions = possibleSolutions;
 		}
 		
 		public function get description():String{
@@ -40,8 +40,8 @@
 			return _id;
 		}
 		
-		public function get possibleSolutions() : Array {
-			return _possibleSolutions;
+		public function get solutions() : Array {
+			return _solutions;
 		}
 		
 		public function get owner():String 

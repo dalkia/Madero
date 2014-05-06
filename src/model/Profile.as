@@ -1,6 +1,7 @@
 ﻿package model 
 {
 	import flash.display.MovieClip;
+	import view.CharacterAnimation;
 	import view.ProfileCard;
 	import model.Conflict;
 	import model.Penalty;
@@ -16,8 +17,9 @@
 		private var _profileCard: ProfileCard;
 		private var _profileName : String;
 		private var _currentConflicts : Array;
+		private var _characterAnimation : CharacterAnimation;
 		
-		public function Profile(proactiviy :int,stress : int,profileCard : ProfileCard, nameA : String) 
+		public function Profile(proactiviy :int,stress : int,profileCard : ProfileCard, nameA : String, characterAnimation : CharacterAnimation) 
 		{
 			_proactivity = proactiviy;
 			_stress = stress;
@@ -27,6 +29,7 @@
 			_profileCard.setProfileName(_profileName);
 			_profileCard.profile = this;
 			_currentConflicts = new Array();
+			_characterAnimation = characterAnimation;
 		}
 		
 		public function get profileCard() : ProfileCard {

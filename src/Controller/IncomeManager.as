@@ -15,10 +15,17 @@
 		}
 		
 		public function increaseIncome():int{
-			for each(var profile:Profile  in _team){
-				_income += profile.proactivity - profile.stress;
+			for each(var profile:Profile  in _team) {
+				if (profile.proactivity > profile.stress) {
+					_income += profile.proactivity - profile.stress;
+				}
 			}
 			return _income;
+		}
+		
+		public function applyPenalty(penalty:int):void 
+		{
+			_income += penalty;
 		}
 		
 		public function set team(team : Array):void{

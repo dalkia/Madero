@@ -65,7 +65,7 @@
 		} 
 		
 		private function loadCards():void {	
-			anglePer = (Math.PI * 2) / profiles.length;					
+			anglePer = (Math.PI * 2) / profiles.length;			
 			for (var i:int = 0; i < profiles.length; i++) {	
 				profiles[i].profileCard.carouselManager = this;
 				profiles[i].profileCard.container = container;

@@ -1,4 +1,5 @@
 ﻿package controller 
+
 {
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -28,6 +29,8 @@
 		private var conflictManager : ConflictManager;
 		private var mainSimulationScreen : MovieClip;
 		private var currentDay : int;
+		private var eventManager : EventManager;
+		private var finalizationDay : int;
 		
 		
 		public function Main() 
@@ -36,15 +39,17 @@
 			createProfiles();	
 			createTimeManager();
 			createMainSimulationScreen();	
-			
+			eventManager = new EventManager();
+			finalizationDay = 10;
 		}
+		
 		
 		private function createTimeManager():void{
 			timeManager = new TimeManager(8, this, 4);
 		}
 		
 		private function createMainSimulationScreen():void {
-			mainSimulationScreen = new MainSimulationScreen();
+			mainSimulationScreen = new MainSimulationScreen(this);
 		}
 		
 		private function createMainScreen() {
@@ -92,15 +97,27 @@
 		public function dayEnded():void {					
 			teamManager.applyPenalties();
 			currentDay++;
-			mainSimulationScreen.day_txt.text = "Day " + currentDay;;
-			var newConflicts : Array = conflictManager.prepareConflictsForDay(timeManager.currentDay);		
-			for (var j : int = 0; j < teamManager.team.teamArray.length; j++) {
-				var currentTeamMember = teamManager.team.teamArray[j];
-				var currentConflicts = newConflicts[j];
-				for (var i : int = 0; i < currentConflicts.length; i++) {
-					mainSimulationScreen.addEmail(currentTeamMember.profileName, currentConflicts[i].title, currentConflicts[i].description,currentConflicts[i]);
+			if (currentDay != finalizationDay) {
+				mainSimulationScreen.day_txt.text = "Day " + currentDay;
+				mainSimulationScreen.removeEmergencies();
+				var newConflicts : Array = conflictManager.prepareConflictsForDay(timeManager.currentDay);		
+				for (var j : int = 0; j < teamManager.team.teamArray.length; j++) {
+					var currentTeamMember = teamManager.team.teamArray[j];
+					var currentConflicts = newConflicts[j];
+					for (var i : int = 0; i < currentConflicts.length; i++) {
+						mainSimulationScreen.addEmail(currentTeamMember.profileName, currentConflicts[i].title, currentConflicts[i].description,currentConflicts[i]);
+					}
 				}
+				for (var j:int = 0; j < eventManager.nonCausalEpisodeForDay[currentDay].length; j++) {
+					mainSimulationScreen.addNonCausalEpisode(eventManager.nonCausalEpisodeForDay[currentDay][j]);
+					incomeManager.applyPenalty(eventManager.nonCausalEpisodeForDay[currentDay][j].penalty);
+				}
+				
+			}else {
+				mainSimulationScreen.day_txt.text = "GAME OVER";
+				timeManager.endTimers();
 			}
+		
 		
 			
 			
@@ -127,6 +144,13 @@
 			addChild(mainSimulationScreen);
 			mainSimulationScreen.day_txt.text = "Day " + currentDay;
 			createConflicts();
+			createNonCausalEpisodes();
+			createCausalEpisodes();
+		}
+		
+		public function applyPenalty(incomeModifier:int):void 
+		{
+			incomeManager.applyPenalty(incomeModifier);
 		}
 		
 		private function createConflicts():void{
@@ -139,6 +163,21 @@
 			interPersonalConflictsXMLLoader.load(new URLRequest("../resources/xml/InterConflicts.xml"));
 			interPersonalConflictsXMLLoader.addEventListener(Event.COMPLETE, processInterConflictsXML);
 			
+		}
+		
+		private function createNonCausalEpisodes() {
+			var nonCausalEpisodesXMLLoader:URLLoader = new URLLoader();
+			nonCausalEpisodesXMLLoader.load(new URLRequest("../resources/xml/NonCausalEpisodes.xml"));
+			nonCausalEpisodesXMLLoader.addEventListener(Event.COMPLETE, processNonCausalEpisodes);	
+		}
+		
+		private function createCausalEpisodes() {
+			
+			
+		}
+		
+		private function processNonCausalEpisodes(e:Event):void {
+			eventManager.loadNonCausalEpisodes(new XML(e.target.data));
 		}
 		
 		private function processConflictsXML(e:Event):void {
